@@ -1,6 +1,11 @@
 created:
-    - database/factories/StudentFactory.php
-    - database/migrations/2025_02_17_133141_create_students_table.php
-    - app/Models/Student.php
+    - database/factories/CompanyFactory.php
+    - database/factories/VacancyFactory.php
+    - database/migrations/2025_02_17_163740_create_companies_table.php
+    - database/migrations/2025_02_17_163741_create_vacancies_table.php
+    - app/Models/Company.php
+    - app/Models/Vacancy.php
 models:
     Student: { first_name: json, last_name: json, status: boolean }
+    Company: { title: json, director: json, address: json, description: json, email: string, status: boolean }
+    Vacancy: { title: json, description: json, company_id: 'id foreign:companies', status: boolean, relationships: { belongsTo: Company } }

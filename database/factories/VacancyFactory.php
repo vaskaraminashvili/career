@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Student;
+use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StudentFactory extends Factory
+class VacancyFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Student::class;
+    protected $model = Vacancy::class;
 
     /**
      * Define the model's default state.
@@ -20,9 +20,12 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => $this->generateTranslatableField(['ka', 'en'], rand(5, 10)),
-            'last_name'  => $this->generateTranslatableField(['ka', 'en'], rand(5, 15)),
-            'status'     => fake()->boolean(),
+            'title'       => $this->generateTranslatableField(['ka', 'en'], rand(5, 20)),
+            'description' => $this->generateTranslatableField(['ka', 'en'], rand(5, 150)),
+            'start_date'  => $this->faker->dateTimeBetween('-1 month'),
+            'end_date'    => $this->faker->dateTimeBetween('now', '+2 months'),
+            'company_id'  => rand(1, 30),
+            'status'      => fake()->boolean(),
         ];
     }
 

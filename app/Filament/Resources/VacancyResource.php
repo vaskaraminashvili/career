@@ -2,21 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
-use App\Models\Student;
+use App\Filament\Resources\VacancyResource\Pages;
+use App\Filament\Resources\VacancyResource\RelationManagers;
+use App\Models\Vacancy;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class StudentResource extends Resource
+class VacancyResource extends Resource
 {
-    use Translatable;
-
-    protected static ?string $model = Student::class;
+    protected static ?string $model = Vacancy::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,10 +21,14 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('first_name')
+                Forms\Components\Select::make('company_id')
+                    ->relationship('company', 'title')
                     ->required(),
-                Forms\Components\TextInput::make('last_name')
+                Forms\Components\TextInput::make('title')
                     ->required(),
+                Forms\Components\TextInput::make('description'),
+                Forms\Components\DatePicker::make('start_date'),
+                Forms\Components\DatePicker::make('end_date'),
                 Forms\Components\Toggle::make('status')
                     ->required(),
             ]);
@@ -37,13 +38,24 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('first_name')
-                    ->label('Student Name')
-                    ->formatStateUsing(function ($state, Student $record) {
-                        return $record->first_name . ' ' . $record->last_name;
-                    })
-                    ->words(4),
-                Tables\Columns\ToggleColumn::make('status'),
+                Tables\Columns\TextColumn::make('company.title')
+                    ->numeric()
+                    ->sortable()
+                    ->words(3)
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->words(5)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('start_date')
+                    ->date()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('end_date')
+                    ->date()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -76,9 +88,9 @@ class StudentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListStudents::route('/'),
-            'create' => Pages\CreateStudent::route('/create'),
-            'edit'   => Pages\EditStudent::route('/{record}/edit'),
+            'index'  => Pages\ListVacancies::route('/'),
+            'create' => Pages\CreateVacancy::route('/create'),
+            'edit'   => Pages\EditVacancy::route('/{record}/edit'),
         ];
     }
 }

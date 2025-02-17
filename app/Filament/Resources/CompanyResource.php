@@ -2,21 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
-use App\Models\Student;
+use App\Filament\Resources\CompanyResource\Pages;
+use App\Filament\Resources\CompanyResource\RelationManagers;
+use App\Models\Company;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class StudentResource extends Resource
+class CompanyResource extends Resource
 {
-    use Translatable;
-
-    protected static ?string $model = Student::class;
+    protected static ?string $model = Company::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,10 +21,18 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('first_name')
+                Forms\Components\TextInput::make('title')
                     ->required(),
-                Forms\Components\TextInput::make('last_name')
+                Forms\Components\TextInput::make('director')
                     ->required(),
+                Forms\Components\TextInput::make('address')
+                    ->required(),
+                Forms\Components\TextInput::make('description')
+                    ->required(),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\Toggle::make('status')
                     ->required(),
             ]);
@@ -37,11 +42,10 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('first_name')
-                    ->label('Student Name')
-                    ->formatStateUsing(function ($state, Student $record) {
-                        return $record->first_name . ' ' . $record->last_name;
-                    })
+                Tables\Columns\TextColumn::make('title')
+                    ->words(5)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('director')
                     ->words(4),
                 Tables\Columns\ToggleColumn::make('status'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -76,9 +80,9 @@ class StudentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListStudents::route('/'),
-            'create' => Pages\CreateStudent::route('/create'),
-            'edit'   => Pages\EditStudent::route('/{record}/edit'),
+            'index'  => Pages\ListCompanies::route('/'),
+            'create' => Pages\CreateCompany::route('/create'),
+            'edit'   => Pages\EditCompany::route('/{record}/edit'),
         ];
     }
 }

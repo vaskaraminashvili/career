@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
+use App\Models\Student;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Vacancy;
 use Illuminate\Database\Seeder;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,10 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Student::factory(1000)->create();
+        
+        Company::factory(30)->create();
 
+        Vacancy::factory(500)->create();
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'name'     => 'Admin',
+            'email'    => 'admin@admin.com',
             'password' => bcrypt('password'),
         ]);
     }

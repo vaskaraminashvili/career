@@ -1,5 +1,15 @@
 models:
-  Student:
-    first_name: json
-    last_name: json
+  Company:
+    title: json
+    director: json
+    address: json
+    description: json
+    email: string
     status: boolean
+  Vacancy:
+    title: json
+    description: json
+    company_id: id foreign:companies
+    status: boolean
+    relationships:
+      belongsTo: Company
