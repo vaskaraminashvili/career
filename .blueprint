@@ -1,0 +1,6 @@
+created:
+    - database/factories/StudentFactory.php
+    - database/migrations/2025_02_17_133141_create_students_table.php
+    - app/Models/Student.php
+models:
+    Student: { first_name: json, last_name: json, status: boolean }

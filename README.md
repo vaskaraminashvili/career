@@ -11,4 +11,8 @@
 * laravel [blueprint](https://blueprint.laravelshift.com/docs/installation/)
 * laravel [nestedset](https://github.com/lazychaser/laravel-nestedset?tab=readme-ov-file#documentation)
 * laravel [debugbar](https://github.com/barryvdh/laravel-debugbar)
+ 
+
+all db fields must be underscore like first_name
+all table will have **ACTIVE** FIELD  which mean active record
 

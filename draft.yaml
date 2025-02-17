@@ -1,0 +1,5 @@
+models:
+  Student:
+    first_name: json
+    last_name: json
+    status: boolean
