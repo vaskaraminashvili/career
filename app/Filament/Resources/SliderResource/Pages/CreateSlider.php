@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Filament\Resources\CompanyResource\Pages;
+namespace App\Filament\Resources\SliderResource\Pages;
 
-use App\Filament\Resources\CompanyResource;
+use App\Filament\Resources\SliderResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateCompany extends CreateRecord
+class CreateSlider extends CreateRecord
 {
     use CreateRecord\Concerns\Translatable;
 
-    protected static string $resource = CompanyResource::class;
+    protected static string $resource = SliderResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\LocaleSwitcher::make(),
-            // ...
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VacancyResource\Pages;
-use App\Filament\Resources\VacancyResource\RelationManagers;
-use App\Models\Vacancy;
+use App\Filament\Resources\FeedbackResource\Pages;
+use App\Filament\Resources\FeedbackResource\RelationManagers;
+use App\Models\Feedback;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
@@ -12,11 +12,11 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class VacancyResource extends Resource
+class FeedbackResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Vacancy::class;
+    protected static ?string $model = Feedback::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,14 +24,10 @@ class VacancyResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id')
-                    ->relationship('company', 'title')
-                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                Forms\Components\TextInput::make('description'),
-                Forms\Components\DatePicker::make('start_date'),
-                Forms\Components\DatePicker::make('end_date'),
+                Forms\Components\TextInput::make('description')
+                    ->required(),
                 Forms\Components\Toggle::make('status')
                     ->required(),
             ]);
@@ -41,22 +37,6 @@ class VacancyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('company.title')
-                    ->numeric()
-                    ->sortable()
-                    ->words(3)
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->words(5)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('start_date')
-                    ->date()
-                    ->sortable()
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('end_date')
-                    ->date()
-                    ->sortable()
-                    ->toggleable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -91,9 +71,9 @@ class VacancyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListVacancies::route('/'),
-            'create' => Pages\CreateVacancy::route('/create'),
-            'edit'   => Pages\EditVacancy::route('/{record}/edit'),
+            'index'  => Pages\ListFeedback::route('/'),
+            'create' => Pages\CreateFeedback::route('/create'),
+            'edit'   => Pages\EditFeedback::route('/{record}/edit'),
         ];
     }
 }

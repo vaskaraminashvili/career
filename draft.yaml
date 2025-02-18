@@ -1,15 +1,18 @@
 models:
-  Company:
+  Slider:
     title: json
-    director: json
-    address: json
-    description: json
-    email: string
+    sort: int
+    link: string
     status: boolean
-  Vacancy:
+  Event:
     title: json
     description: json
-    company_id: id foreign:companies
     status: boolean
-    relationships:
-      belongsTo: Company
+  News:
+    title: json
+    description: json
+    status: boolean
+  Feedback:
+    title: json
+    description: json
+    status: boolean

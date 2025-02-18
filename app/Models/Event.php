@@ -2,45 +2,33 @@
 
 namespace App\Models;
 
+use App\Traits\CustomInteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 
-class Vacancy extends Model
+class Event extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, CustomInteractsWithMedia;
 
     public array $translatable = ['title', 'description'];
 
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'title',
         'description',
-        'company_id',
         'status',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id'          => 'integer',
         'title'       => 'array',
         'description' => 'array',
-        'company_id'  => 'integer',
         'status'      => 'boolean',
     ];
 
-    public function company(): BelongsTo
+    protected function getMediaCollectionName(): string
     {
-        return $this->belongsTo(Company::class);
+        return 'event';
     }
 }

@@ -6,36 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Company extends Model
+class Feedback extends Model
 {
     use HasFactory, HasTranslations;
 
-    public array $translatable = ['title', 'director', 'address', 'description'];
+    public array $translatable = ['title', 'description'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'title',
-        'director',
-        'address',
         'description',
-        'email',
         'status',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id'          => 'integer',
         'title'       => 'array',
-        'director'    => 'array',
-        'address'     => 'array',
         'description' => 'array',
         'status'      => 'boolean',
     ];

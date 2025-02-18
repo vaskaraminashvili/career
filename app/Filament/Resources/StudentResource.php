@@ -5,11 +5,14 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Student;
-use Filament\Forms;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class StudentResource extends Resource
@@ -24,11 +27,11 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('first_name')
+                TextInput::make('first_name')
                     ->required(),
-                Forms\Components\TextInput::make('last_name')
+                TextInput::make('last_name')
                     ->required(),
-                Forms\Components\Toggle::make('status')
+                Toggle::make('status')
                     ->required(),
             ]);
     }
@@ -37,18 +40,18 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('first_name')
+                TextColumn::make('first_name')
                     ->label('Student Name')
                     ->formatStateUsing(function ($state, Student $record) {
                         return $record->first_name . ' ' . $record->last_name;
                     })
                     ->words(4),
-                Tables\Columns\ToggleColumn::make('status'),
-                Tables\Columns\TextColumn::make('created_at')
+                ToggleColumn::make('status'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

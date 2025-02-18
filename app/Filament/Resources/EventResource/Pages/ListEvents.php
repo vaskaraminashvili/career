@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\VacancyResource\Pages;
+namespace App\Filament\Resources\EventResource\Pages;
 
-use App\Filament\Resources\VacancyResource;
+use App\Filament\Resources\EventResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListVacancies extends ListRecords
+class ListEvents extends ListRecords
 {
     use ListRecords\Concerns\Translatable;
 
-    protected static string $resource = VacancyResource::class;
+    protected static string $resource = EventResource::class;
 
     protected function getHeaderActions(): array
     {

@@ -2,21 +2,23 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VacancyResource\Pages;
-use App\Filament\Resources\VacancyResource\RelationManagers;
-use App\Models\Vacancy;
-use Filament\Forms;
+use App\Filament\Resources\SliderResource\Pages;
+use App\Filament\Resources\SliderResource\RelationManagers;
+use App\Models\Slider;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class VacancyResource extends Resource
+class SliderResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Vacancy::class;
+    protected static ?string $model = Slider::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,16 +26,19 @@ class VacancyResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id')
-                    ->relationship('company', 'title')
+                TextInput::make('title')
                     ->required(),
-                Forms\Components\TextInput::make('title')
+                TextInput::make('sort')
+                    ->required()
+                    ->numeric(),
+                TextInput::make('link')
+                    ->required()
+                    ->maxLength(255),
+                Toggle::make('status')
                     ->required(),
-                Forms\Components\TextInput::make('description'),
-                Forms\Components\DatePicker::make('start_date'),
-                Forms\Components\DatePicker::make('end_date'),
-                Forms\Components\Toggle::make('status')
-                    ->required(),
+                SpatieMediaLibraryFileUpload::make('slider')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->collection('slider')
             ]);
     }
 
@@ -41,22 +46,11 @@ class VacancyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('company.title')
+                Tables\Columns\TextColumn::make('sort')
                     ->numeric()
-                    ->sortable()
-                    ->words(3)
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->words(5)
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('link')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('start_date')
-                    ->date()
-                    ->sortable()
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('end_date')
-                    ->date()
-                    ->sortable()
-                    ->toggleable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -91,9 +85,9 @@ class VacancyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListVacancies::route('/'),
-            'create' => Pages\CreateVacancy::route('/create'),
-            'edit'   => Pages\EditVacancy::route('/{record}/edit'),
+            'index'  => Pages\ListSliders::route('/'),
+            'create' => Pages\CreateSlider::route('/create'),
+            'edit'   => Pages\EditSlider::route('/{record}/edit'),
         ];
     }
 }

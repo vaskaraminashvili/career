@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\CompanyResource\Pages;
+namespace App\Filament\Resources\FeedbackResource\Pages;
 
-use App\Filament\Resources\CompanyResource;
+use App\Filament\Resources\FeedbackResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCompany extends EditRecord
+class EditFeedback extends EditRecord
 {
     use EditRecord\Concerns\Translatable;
 
-    protected static string $resource = CompanyResource::class;
+    protected static string $resource = FeedbackResource::class;
 
     protected function getHeaderActions(): array
     {

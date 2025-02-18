@@ -2,27 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\CustomInteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 
-class Company extends Model
+class News extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, CustomInteractsWithMedia;
 
-    public array $translatable = ['title', 'director', 'address', 'description'];
+    public array $translatable = ['title', 'description'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'title',
-        'director',
-        'address',
         'description',
-        'email',
         'status',
     ];
 
@@ -34,9 +28,12 @@ class Company extends Model
     protected $casts = [
         'id'          => 'integer',
         'title'       => 'array',
-        'director'    => 'array',
-        'address'     => 'array',
         'description' => 'array',
         'status'      => 'boolean',
     ];
+
+    protected function getMediaCollectionName()
+    {
+        return 'news';
+    }
 }

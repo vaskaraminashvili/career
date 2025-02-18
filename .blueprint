@@ -1,11 +1,21 @@
 created:
-    - database/factories/CompanyFactory.php
-    - database/factories/VacancyFactory.php
-    - database/migrations/2025_02_17_163740_create_companies_table.php
-    - database/migrations/2025_02_17_163741_create_vacancies_table.php
-    - app/Models/Company.php
-    - app/Models/Vacancy.php
+    - database/factories/SliderFactory.php
+    - database/factories/EventFactory.php
+    - database/factories/NewsFactory.php
+    - database/factories/FeedbackFactory.php
+    - database/migrations/2025_02_18_075608_create_sliders_table.php
+    - database/migrations/2025_02_18_075609_create_events_table.php
+    - database/migrations/2025_02_18_075610_create_news_table.php
+    - database/migrations/2025_02_18_075611_create_feedback_table.php
+    - app/Models/Slider.php
+    - app/Models/Event.php
+    - app/Models/News.php
+    - app/Models/Feedback.php
 models:
     Student: { first_name: json, last_name: json, status: boolean }
     Company: { title: json, director: json, address: json, description: json, email: string, status: boolean }
     Vacancy: { title: json, description: json, company_id: 'id foreign:companies', status: boolean, relationships: { belongsTo: Company } }
+    Slider: { title: json, sort: int, link: string, status: boolean }
+    Event: { title: json, description: json, status: boolean }
+    News: { title: json, description: json, status: boolean }
+    Feedback: { title: json, description: json, status: boolean }

@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CompanyResource\Pages;
-use App\Filament\Resources\CompanyResource\RelationManagers;
-use App\Models\Company;
+use App\Filament\Resources\EventResource\Pages;
+use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
-class CompanyResource extends Resource
+class EventResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Company::class;
+    protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,18 +27,13 @@ class CompanyResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                Forms\Components\TextInput::make('director')
-                    ->required(),
-                Forms\Components\TextInput::make('address')
-                    ->required(),
                 Forms\Components\TextInput::make('description')
                     ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\Toggle::make('status')
                     ->required(),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('event')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->collection('event')
             ]);
     }
 
@@ -45,17 +41,13 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->words(5)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('director')
-                    ->words(4),
-                Tables\Columns\ToggleColumn::make('status'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('title'),
+                ToggleColumn::make('status'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -83,9 +75,9 @@ class CompanyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListCompanies::route('/'),
-            'create' => Pages\CreateCompany::route('/create'),
-            'edit'   => Pages\EditCompany::route('/{record}/edit'),
+            'index'  => Pages\ListEvents::route('/'),
+            'create' => Pages\CreateEvent::route('/create'),
+            'edit'   => Pages\EditEvent::route('/{record}/edit'),
         ];
     }
 }
