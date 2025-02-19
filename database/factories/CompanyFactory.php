@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Company;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyFactory extends Factory
 {
@@ -21,10 +20,10 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'       => $this->generateTranslatableField(['ka', 'en'], rand(2,20)),
-            'director'    => $this->generateTranslatableField(['ka', 'en'], rand(2,10)),
-            'address'     => $this->generateTranslatableField(['ka', 'en'], rand(2,4)),
-            'description' => $this->generateTranslatableField(['ka', 'en'], rand(2,100)),
+            'title'       => $this->generateTranslatableField(['ka', 'en'], rand(2, 20)),
+            'phone'       => $this->faker->phoneNumber,
+            'address'     => $this->generateTranslatableField(['ka', 'en'], rand(2, 4)),
+            'description' => $this->generateTranslatableField(['ka', 'en'], rand(2, 100)),
             'email'       => fake()->safeEmail(),
             'status'      => fake()->boolean(),
         ];

@@ -5,7 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\VacancyResource\Pages;
 use App\Filament\Resources\VacancyResource\RelationManagers;
 use App\Models\Vacancy;
-use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -24,17 +28,26 @@ class VacancyResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id')
+                Select::make('company_id')
                     ->relationship('company', 'title')
+                    ->columnSpanFull()
+                    ->searchable()
+                    ->preload()
                     ->required(),
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title')
+                    ->columnSpanFull()
                     ->required(),
-                Forms\Components\TextInput::make('description'),
-                Forms\Components\DatePicker::make('start_date'),
-                Forms\Components\DatePicker::make('end_date'),
-                Forms\Components\Toggle::make('status')
+                RichEditor::make('description')
+                    ->columnSpanFull()
                     ->required(),
-            ]);
+                DatePicker::make('start_date')
+                    ->required(),
+                DatePicker::make('end_date')
+                    ->required(),
+                Toggle::make('status')
+                    ->required(),
+            ])
+            ->columns(2);
     }
 
     public static function table(Table $table): Table
