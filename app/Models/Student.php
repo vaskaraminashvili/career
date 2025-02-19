@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\CustomInteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 
-class Student extends Model
+class Student extends Model implements HasMedia
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, CustomInteractsWithMedia;
 
     public array $translatable = ['first_name', 'last_name'];
 
@@ -20,6 +23,7 @@ class Student extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'phone',
         'status',
     ];
 
@@ -29,9 +33,19 @@ class Student extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id'         => 'integer',
         'first_name' => 'array',
-        'last_name' => 'array',
-        'status' => 'boolean',
+        'last_name'  => 'array',
+        'status'     => 'boolean',
     ];
+
+    public function user(): belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected function getMediaCollectionName()
+    {
+        return 'student';
+    }
 }

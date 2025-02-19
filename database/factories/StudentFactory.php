@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StudentFactory extends Factory
@@ -20,8 +22,12 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id'    => User::factory()->create([
+                'type' => UserType::STUDENT,
+            ]),
             'first_name' => $this->generateTranslatableField(['ka', 'en'], rand(5, 10)),
             'last_name'  => $this->generateTranslatableField(['ka', 'en'], rand(5, 15)),
+            'phone'      => fake()->phoneNumber(),
             'status'     => fake()->boolean(),
         ];
     }

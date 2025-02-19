@@ -5,8 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CompanyResource\Pages;
 use App\Filament\Resources\CompanyResource\RelationManagers;
 use App\Models\Company;
-use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -26,26 +29,31 @@ class CompanyResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                Fieldset::make()
+                    ->relationship('User')
+                    ->schema([
+                        TextInput::make('email')
+                            ->email()
+                            ->required(),
+                    ]),
+                TextInput::make('title')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('phone')
+                TextInput::make('phone')
                     ->required(),
-                Forms\Components\TextInput::make('address')
+
+                TextInput::make('address')
                     ->required(),
-                Forms\Components\RichEditor::make('description')
+                RichEditor::make('description')
                     ->columnSpanFull()
                     ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
                 SpatieMediaLibraryFileUpload::make('company_logo')
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->collection('company')
                     ->required(),
-                Forms\Components\Toggle::make('status')
+                Toggle::make('status')
                     ->required(),
+
             ])
             ->columns(2);
     }

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CustomInteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 
@@ -24,7 +25,6 @@ class Company extends Model implements HasMedia
         'phone',
         'address',
         'description',
-        'email',
         'status',
     ];
 
@@ -40,6 +40,11 @@ class Company extends Model implements HasMedia
         'description' => 'array',
         'status'      => 'boolean',
     ];
+
+    public function user(): belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     protected function getMediaCollectionName()
     {

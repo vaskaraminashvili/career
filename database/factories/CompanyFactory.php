@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyFactory extends Factory
@@ -20,11 +22,13 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id'     => User::factory()->create([
+                'type' => UserType::COMPANY,
+            ]),
             'title'       => $this->generateTranslatableField(['ka', 'en'], rand(2, 20)),
             'phone'       => $this->faker->phoneNumber,
             'address'     => $this->generateTranslatableField(['ka', 'en'], rand(2, 4)),
             'description' => $this->generateTranslatableField(['ka', 'en'], rand(2, 100)),
-            'email'       => fake()->safeEmail(),
             'status'      => fake()->boolean(),
         ];
     }

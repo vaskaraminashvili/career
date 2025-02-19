@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->json('title');
             $table->string('phone');
             $table->json('address');
             $table->json('description');
-            $table->string('email');
             $table->boolean('status');
             $table->timestamps();
         });

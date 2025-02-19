@@ -17,15 +17,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'email'    => 'admin@admin.com',
+            'password' => bcrypt('password'),
+            'type'     => 'admin',
+        ]);
+
+//        foreach (UserType::cases() as $type) {
+//            if ($type->value !== 'admin') {
+//
+//                match ($type->value) {
+//                    'company' => User::factory(30)->create([
+//                        'type' => $type->value,
+//                    ]),
+//                    'student' => User::factory(1000)->create([
+//                        'type' => $type->value,
+//                    ]),
+//                    default => null
+//                };
+//            }
+//        }
+
         Student::factory(1000)->create();
-        
+
         Company::factory(30)->create();
 
         Vacancy::factory(500)->create();
-        User::factory()->create([
-            'name'     => 'Admin',
-            'email'    => 'admin@admin.com',
-            'password' => bcrypt('password'),
-        ]);
+
     }
 }
