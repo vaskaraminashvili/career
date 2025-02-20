@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->json('title');
-            $table->integer('sort');
-            $table->string('link');
-            $table->boolean('status');
+            $table->json('title')->nullable();
+            $table->integer('sort')->nullable()->default(0);
+            $table->string('link')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

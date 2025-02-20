@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\News;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Vacancy;
@@ -43,6 +44,8 @@ class DatabaseSeeder extends Seeder
         Company::factory(30)->create();
 
         Vacancy::factory(500)->create();
+
+        News::factory(100)->create();
 
     }
 }

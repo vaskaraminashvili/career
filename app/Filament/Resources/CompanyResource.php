@@ -25,6 +25,13 @@ class CompanyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+//    protected static ?string $navigationLabel = 'company';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Company');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

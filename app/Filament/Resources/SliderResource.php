@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 
 class SliderResource extends Resource
@@ -26,19 +27,17 @@ class SliderResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('sort')
-                    ->required()
-                    ->numeric(),
+                TextInput::make('title'),
                 TextInput::make('link')
-                    ->required()
                     ->maxLength(255),
-                Toggle::make('status')
-                    ->required(),
+                TextInput::make('sort')
+                    ->numeric(),
+                Toggle::make('status'),
                 SpatieMediaLibraryFileUpload::make('slider')
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->collection('slider')
+                    ->columnSpanFull()
+                    ->required()
             ]);
     }
 
@@ -46,13 +45,14 @@ class SliderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('sort')
-                    ->numeric()
-                    ->sortable(),
+                SpatieMediaLibraryImageColumn::make('slider')
+                    ->circular()
+                    ->conversion('thumb')
+                    ->collection('slider'),
                 Tables\Columns\TextColumn::make('link')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\ToggleColumn::make('status'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
