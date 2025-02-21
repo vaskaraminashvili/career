@@ -32,6 +32,7 @@ class UserPanelProvider extends PanelProvider
             ->profile(EditProfile::class, false)
             ->passwordReset()
             ->login()
+            ->brandName(fn() => __('Student'))
             ->colors([
                 'primary' => Color::Indigo,
                 'gray'    => Color::Slate,
@@ -42,10 +43,10 @@ class UserPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->navigationItems([
-                NavigationItem::make(__('Profile'))
+                NavigationItem::make()
+                    ->label(fn() => __('Profile'))
                     ->url(fn(): string => EditProfile::getUrl())
-                    ->icon('heroicon-o-user-circle')
-                    ->sort(3),
+                    ->icon('heroicon-o-user-circle'),
 
             ])
             ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')

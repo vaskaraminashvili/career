@@ -12,6 +12,13 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class EditProfile extends BaseEditProfile
 {
+    public static function getNavigationLabel(): string
+    {
+        return static::$navigationLabel ??
+            static::$title ??
+            __('filament-panels::pages/dashboard.profile');
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -21,21 +28,26 @@ class EditProfile extends BaseEditProfile
                     ->relationship('student')
                     ->schema([
                         TextInput::make('first_name.ka')
+                            ->translateLabel()
                             ->label('First Name Geo')
                             ->required(),
                         TextInput::make('last_name.ka')
+                            ->translateLabel()
                             ->label('Last Name Geo')
                             ->required(),
                         TextInput::make('first_name.en')
+                            ->translateLabel()
                             ->label('First Name Eng')
                             ->required(),
                         TextInput::make('last_name.en')
+                            ->translateLabel()
                             ->label('Last Name Eng')
                             ->required(),
                         SpatieMediaLibraryFileUpload::make('cv')
                             ->acceptedFileTypes(['application/pdf'])
                             ->collection('student_cv'),
-                        SpatieMediaLibraryFileUpload::make('Student')
+                        SpatieMediaLibraryFileUpload::make('Photo')
+                            ->translateLabel()
                             ->acceptedFileTypes(['image/jpeg', 'image/png'])
                             ->collection('student'),
                         TextInput::make('cv_link')

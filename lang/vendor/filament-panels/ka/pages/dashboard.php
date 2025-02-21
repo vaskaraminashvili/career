@@ -2,7 +2,8 @@
 
 return [
 
-    'title' => 'მიმოხილვა',
+    'title'   => 'მიმოხილვა',
+    'profile' => 'fff',
 
     'company' => 'კომპანია',
 
