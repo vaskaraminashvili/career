@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Enums\UserType;
+use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,7 @@ use Illuminate\Notifications\Notifiable;
 
 //use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable implements HasName
+class User extends Authenticatable implements HasName, FilamentUser
 {
     use HasFactory, Notifiable;
 
@@ -24,6 +26,17 @@ class User extends Authenticatable implements HasName
         'password',
         'remember_token',
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        $user = $this;
+        $type = $user->type->value;
+        return match ($panel->getId()) {
+            'cms' => $type == 'admin',
+            'user' => $type == 'student',
+            default => false,
+        };
+    }
 
     public function getFilamentName(): string
     {

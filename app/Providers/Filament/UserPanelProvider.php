@@ -8,7 +8,6 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -28,10 +27,11 @@ class UserPanelProvider extends PanelProvider
     {
         return $panel
             ->id('user')
-            ->profile()
-            ->userMenuItems([
-                'profile' => MenuItem::make()->url(fn(): string => EditProfile::getUrl())
-            ])
+            ->login()
+            ->profile(EditProfile::class, false)
+//            ->userMenuItems([
+//                'profile' => MenuItem::make()->url(fn(): string => EditProfile::getUrl())
+//            ])
             ->path('user')
             ->colors([
                 'primary' => Color::Indigo,
@@ -44,8 +44,7 @@ class UserPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                Widgets\AccountWidget::make(),
             ])
             ->middleware([
                 EncryptCookies::class,
