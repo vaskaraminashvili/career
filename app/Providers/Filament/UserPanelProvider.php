@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use Andreia\FilamentNordTheme\FilamentNordThemePlugin;
 use App\Filament\User\Pages\EditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -13,7 +12,6 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\SpatieLaravelTranslatablePlugin;
-use Filament\Support\Colors\Color;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -33,10 +31,6 @@ class UserPanelProvider extends PanelProvider
             ->passwordReset()
             ->login()
             ->brandName(fn() => __('Student'))
-            ->colors([
-                'primary' => Color::Indigo,
-                'gray'    => Color::Slate,
-            ])
             ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\\Filament\\User\\Resources')
             ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\\Filament\\User\\Pages')
             ->pages([
@@ -68,7 +62,6 @@ class UserPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                FilamentNordThemePlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['ka', 'en'])
             ]);

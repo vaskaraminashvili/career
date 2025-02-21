@@ -6,6 +6,7 @@ use App\Traits\CustomInteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 
@@ -42,6 +43,11 @@ class Student extends Model implements HasMedia
     public function user(): belongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function vacancies(): BelongsToMany
+    {
+        return $this->belongsToMany(Vacancy::class);
     }
 
     protected function getMediaCollectionName()
