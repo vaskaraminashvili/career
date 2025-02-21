@@ -32,12 +32,12 @@ class EditProfile extends BaseEditProfile
                         TextInput::make('last_name.en')
                             ->label('Last Name Eng')
                             ->required(),
-                        SpatieMediaLibraryFileUpload::make('Student')
-                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
-                            ->collection('student'),
                         SpatieMediaLibraryFileUpload::make('cv')
                             ->acceptedFileTypes(['application/pdf'])
                             ->collection('student_cv'),
+                        SpatieMediaLibraryFileUpload::make('Student')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                            ->collection('student'),
                         TextInput::make('cv_link')
                             ->label('CV Link')
                             ->formatStateUsing(function ($state, $get) {

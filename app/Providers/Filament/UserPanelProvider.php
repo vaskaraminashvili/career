@@ -28,9 +28,10 @@ class UserPanelProvider extends PanelProvider
     {
         return $panel
             ->id('user')
-            ->login()
-            ->profile(EditProfile::class, false)
             ->path('user')
+            ->profile(EditProfile::class, false)
+            ->passwordReset()
+            ->login()
             ->colors([
                 'primary' => Color::Indigo,
                 'gray'    => Color::Slate,
