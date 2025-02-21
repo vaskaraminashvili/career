@@ -8,6 +8,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -29,9 +30,6 @@ class UserPanelProvider extends PanelProvider
             ->id('user')
             ->login()
             ->profile(EditProfile::class, false)
-//            ->userMenuItems([
-//                'profile' => MenuItem::make()->url(fn(): string => EditProfile::getUrl())
-//            ])
             ->path('user')
             ->colors([
                 'primary' => Color::Indigo,
@@ -41,6 +39,13 @@ class UserPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\\Filament\\User\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+            ])
+            ->navigationItems([
+                NavigationItem::make(__('Profile'))
+                    ->url(fn(): string => EditProfile::getUrl())
+                    ->icon('heroicon-o-user-circle')
+                    ->sort(3),
+
             ])
             ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')
             ->widgets([

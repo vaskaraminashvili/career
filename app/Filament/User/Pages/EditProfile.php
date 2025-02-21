@@ -4,9 +4,11 @@ namespace App\Filament\User\Pages;
 
 
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Auth\EditProfile as BaseEditProfile;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class EditProfile extends BaseEditProfile
 {
@@ -30,6 +32,22 @@ class EditProfile extends BaseEditProfile
                         TextInput::make('last_name.en')
                             ->label('Last Name Eng')
                             ->required(),
+                        SpatieMediaLibraryFileUpload::make('Student')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                            ->collection('student'),
+                        SpatieMediaLibraryFileUpload::make('cv')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->collection('student_cv'),
+                        TextInput::make('cv_link')
+                            ->label('CV Link')
+                            ->formatStateUsing(function ($state, $get) {
+                                $media = Media::where('collection_name', 'student_cv')
+                                    ->where('model_id', $get('id'))
+                                    ->first();
+                                return $media ? $media->getUrl() : 'No CV uploaded';
+                            })
+                            ->disabled()
+                            ->visible(fn($get) => $get('cv')),
                     ]),
                 $this->getEmailFormComponent(),
                 $this->getPasswordFormComponent(),
