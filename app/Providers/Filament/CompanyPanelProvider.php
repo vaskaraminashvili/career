@@ -41,6 +41,7 @@ class CompanyPanelProvider extends PanelProvider
                     ->label(fn() => __('Profile'))
                     ->url(fn(): string => EditProfile::getUrl())
                     ->icon('heroicon-o-user')
+                    ->sort(3)
             ])
             ->discoverWidgets(in: app_path('Filament/Company/Widgets'), for: 'App\\Filament\\Company\\Widgets')
             ->widgets([
