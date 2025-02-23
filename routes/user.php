@@ -2,13 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Route::get('/student/{vacancy}', function () {
     return view('welcome');
-//    dd(request()->all());
-})->name('studnet.vacancy');
+})->name('student.vacancy');
 

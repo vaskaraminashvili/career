@@ -1,0 +1,14 @@
+{
+    "Profile": "პროფილი",
+    "Student": "მაძიებელი",
+    "First Name Geo": "სახელი ქართულად",
+    "Last Name Geo": "გვარი ქართულად",
+    "First Name Eng": "სახელი ინგლისურად",
+    "Last Name Eng": "გვარი ინგლისურად",
+    "Photo": "ფოტო",
+    "Vacancies": "ვაკანსიები",
+    "Status": "სტატუსი",
+    "pending": "მოლოდინი",
+    "declined": "უარყოფილი",
+    "approved": "დამტკიცებული"
+}

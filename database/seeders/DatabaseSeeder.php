@@ -47,5 +47,16 @@ class DatabaseSeeder extends Seeder
 
         News::factory(100)->create();
 
+        for ($x = 0; $x <= 190; $x++) {
+            $student = Student::where("status", 1)
+                ->inRandomOrder()
+                ->first();
+
+            $vacany = Vacancy::where("status", 1)
+                ->inRandomOrder()
+                ->first();
+            $student->vacancies()->syncwithoutdetaching($vacany);
+        }
+
     }
 }

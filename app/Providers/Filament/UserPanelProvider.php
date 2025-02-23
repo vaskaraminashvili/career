@@ -2,48 +2,50 @@
 
 namespace App\Providers\Filament;
 
-use Andreia\FilamentNordTheme\FilamentNordThemePlugin;
+use App\Filament\User\Pages\EditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\SpatieLaravelTranslatablePlugin;
-use Filament\Support\Colors\Color;
-use Filament\Support\Facades\FilamentView;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class CmsPanelProvider extends PanelProvider
+class UserPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('cms')
-            ->path('cms')
+            ->id('user')
+            ->path('user')
+            ->profile(EditProfile::class, false)
+            ->passwordReset()
             ->login()
-            ->colors([
-                'primary' => Color::Indigo,
-                'gray'    => Color::Slate,
-            ])
-            ->discoverResources(in: app_path('Filament/Cms/Resources'), for: 'App\\Filament\\Cms\\Resources')
-            ->discoverPages(in: app_path('Filament/Cms/Pages'), for: 'App\\Filament\\Cms\\Pages')
+            ->brandName(fn() => __('Student'))
+            ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\\Filament\\User\\Resources')
+            ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\\Filament\\User\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Cms/Widgets'), for: 'App\\Filament\\Cms\\Widgets')
+            ->navigationItems([
+                NavigationItem::make()
+                    ->label(fn() => __('Profile'))
+                    ->url(fn(): string => EditProfile::getUrl())
+                    ->icon('heroicon-o-user-circle'),
+
+            ])
+            ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                Widgets\AccountWidget::make(),
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -60,15 +62,8 @@ class CmsPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                FilamentNordThemePlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['ka', 'en'])
             ]);
-    }
-
-    public function register(): void
-    {
-        parent::register();
-        FilamentView::registerRenderHook('panels::body.end', fn(): string => Blade::render("@vite('resources/js/app.js')"));
     }
 }
