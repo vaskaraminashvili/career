@@ -34,6 +34,7 @@ class User extends Authenticatable implements HasName, FilamentUser
         return match ($panel->getId()) {
             'cms' => $type == 'admin',
             'user' => $type == 'student',
+            'company' => $type == 'company',
             default => false,
         };
     }

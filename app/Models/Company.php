@@ -6,6 +6,7 @@ use App\Traits\CustomInteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 
@@ -44,6 +45,11 @@ class Company extends Model implements HasMedia
     public function user(): belongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function vacancies(): HasMany
+    {
+        return $this->hasMany(Vacancy::class);
     }
 
     protected function getMediaCollectionName()
