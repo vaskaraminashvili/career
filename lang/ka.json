@@ -11,5 +11,8 @@
     "pending": "მოლოდინი",
     "declined": "უარყოფილი",
     "approved": "დამტკიცებული",
-    "Company": "კომპანია"
+    "Company": "კომპანია",
+    "Applicants": "აპლიკანტები",
+    "confirm": "დადასტურება",
+    "decline": "უარყოფა"
 }
