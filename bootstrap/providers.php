@@ -3,5 +3,6 @@
 return [
     App\Providers\AppServiceProvider::class,
     App\Providers\Filament\CmsPanelProvider::class,
+    App\Providers\Filament\CompanyPanelProvider::class,
     App\Providers\Filament\UserPanelProvider::class,
 ];
