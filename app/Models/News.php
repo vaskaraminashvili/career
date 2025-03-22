@@ -31,7 +31,7 @@ class News extends Model implements HasMedia
         'description' => 'array',
         'status'      => 'boolean',
     ];
-
+    
     protected function getMediaCollectionName()
     {
         return 'news';

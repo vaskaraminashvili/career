@@ -17,7 +17,7 @@ class EventResource extends Resource
 {
     use Translatable;
 
-    protected static bool $shouldRegisterNavigation = false;
+//    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $model = Event::class;
 
@@ -27,13 +27,18 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('description')
-                    ->required(),
                 Forms\Components\Toggle::make('status')
                     ->required(),
+                Forms\Components\TextInput::make('title')
+                    ->columnSpanFull()
+                    ->required(),
+                Forms\Components\RichEditor::make('description')
+                    ->columnSpanFull()
+                    ->required(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('event')
+                    ->columnSpanFull()
+                    ->multiple()
+                    ->required()
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->collection('event')
             ]);

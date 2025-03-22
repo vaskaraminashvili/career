@@ -17,8 +17,7 @@ trait CustomInteractsWithMedia
         $this->parentRegisterMediaCollections();
 
         $this
-            ->addMediaCollection($this->getMediaCollectionName())
-            ->singleFile();
+            ->addMediaCollection($this->getMediaCollectionName());
     }
 
     protected function getMediaCollectionName(): string

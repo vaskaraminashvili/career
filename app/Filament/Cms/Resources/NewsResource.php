@@ -36,6 +36,8 @@ class NewsResource extends Resource
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('img')
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->multiple()
+                    ->reorderable()
                     ->collection('news')
                     ->required(),
                 Toggle::make('status')
