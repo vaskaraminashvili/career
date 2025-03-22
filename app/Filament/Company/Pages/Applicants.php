@@ -5,6 +5,7 @@ namespace App\Filament\Company\Pages;
 use App\Enums\VacancyStatus;
 use App\Models\Student;
 use App\Models\StudentVacancy;
+use App\Models\Vacancy;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
@@ -42,7 +43,7 @@ class Applicants extends Page implements HasTable, HasActions
             ->query(
                 StudentVacancy::query()
                     ->with([
-                        'student'
+                        'student', 'vacancy'
                     ])
                     ->whereIn('vacancy_id', $user_vacancies)
             )
@@ -54,6 +55,16 @@ class Applicants extends Page implements HasTable, HasActions
                     ->label(__('Student'))
                     ->limit(50)
                     ->searchable(),
+                TextColumn::make('vacancy.title')
+                    ->label(__('Vacancy'))
+                    ->limit(50)
+                    ->searchable(),
+
+                TextColumn::make('vacancy')
+                    ->label(__('Start Date') . ' / ' . __('End Date'))
+                    ->formatStateUsing(function ($state, $record) {
+                        return $record->vacancy->start_date . ' / ' . $record->vacancy->end_date;
+                    }),
                 TextColumn::make('status')
                     ->formatStateUsing(function ($state) {
                         return __($state->value);
@@ -91,14 +102,30 @@ class Applicants extends Page implements HasTable, HasActions
                                 })
                         ]),
                         Fieldset::make()
+                            ->relationship('vacancy')
+                            ->schema([
+                                TextInput::make('vacancy.title')
+                                    ->label(fn() => __('Vacancy Title'))
+                                    ->columnSpanFull()
+                                    ->formatStateUsing(function ($state, Vacancy $record) {
+                                        return $record->title;
+                                    }),
+                                TextInput::make('Date')
+                                    ->label(__('Start Date') . ' / ' . __('End Date'))
+                                    ->formatStateUsing(function ($state, Vacancy $record) {
+                                        return $record->start_date . ' / ' . $record->end_date;
+                                    }),
+                            ]),
+                        Fieldset::make()
                             ->relationship('student')
                             ->schema([
                                 TextInput::make('student.first_name')
                                     ->formatStateUsing(function ($state, Student $record) {
                                         return $record->first_name . ' ' . $record->last_name;
                                     })
-                                    ->label(fn() => __('Name'))
+                                    ->label(fn() => __('Applicant Name'))
                                     ->columnSpanFull(),
+
                                 TextInput::make('cv_link')
                                     ->label('CV Link')
                                     ->formatStateUsing(function ($state, $get) {
