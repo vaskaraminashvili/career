@@ -280,7 +280,7 @@ html {
 }
 
 /*---------------------------------
-    Typography css start 
+    Typography css start
 ---------------------------------*/
 body {
   font-family: var(--rr-ff-body);
@@ -800,7 +800,7 @@ a.rr-a-btn:hover {
 }
 
 /*----------------------------------------
-    Body Overlay 
+    Body Overlay
 -----------------------------------------*/
 .body__overlay {
   background-color: var(--rr-common-heading);

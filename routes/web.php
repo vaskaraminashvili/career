@@ -1,14 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/student/{vacancy}', function () {
-    return view('welcome');
-//    dd(request()->all());
-})->name('studnet.vacancy');
 
