@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Company\Pages\Auth\RegisterCompany;
 use App\Filament\Company\Pages\EditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -28,6 +29,7 @@ class CompanyPanelProvider extends PanelProvider
             ->id('company')
             ->path('company')
             ->profile(EditProfile::class, false)
+            ->registration(RegisterCompany::class)
             ->passwordReset()
             ->login()
             ->brandName(fn() => __('Company'))

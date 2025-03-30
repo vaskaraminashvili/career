@@ -37,7 +37,7 @@ class Applicants extends Page implements HasTable, HasActions
     public function table(Table $table): Table
     {
         $user = auth()->user()->load(['company.vacancies']);
-        $user_vacancies = $user->company->vacancies->pluck('id')->toArray();
+        $user_vacancies = $user->company?->vacancies->pluck('id')->toArray();
 
         return $table
             ->query(
