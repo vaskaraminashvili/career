@@ -20,7 +20,7 @@ class VacancyFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'       => $this->generateTranslatableField(['ka', 'en'], rand(5, 20)),
+            'title'       => $this->generateTranslatableField(['ka', 'en'], 1),
             'description' => $this->generateTranslatableField(['ka', 'en'], rand(5, 150)),
             'start_date'  => $this->faker->dateTimeBetween('-1 month'),
             'end_date'    => $this->faker->dateTimeBetween('now', '+2 months'),

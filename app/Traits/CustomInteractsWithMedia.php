@@ -47,6 +47,6 @@ trait CustomInteractsWithMedia
 
     public function getImgAttribute(): string
     {
-        return $this->getFirstMediaUrl($this->getMediaCollectionName()) ?: '';
+        return $this->getFirstMediaUrl($this->getMediaCollectionName()) ?: asset('assets/imgs/logo/logo.png');
     }
 }

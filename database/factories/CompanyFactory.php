@@ -25,7 +25,7 @@ class CompanyFactory extends Factory
             'user_id'     => User::factory()->create([
                 'type' => UserType::COMPANY,
             ]),
-            'title'       => $this->generateTranslatableField(['ka', 'en'], rand(2, 20)),
+            'title'       => $this->generateTranslatableField(['ka', 'en'], rand(1, 2)),
             'phone'       => $this->faker->phoneNumber,
             'address'     => $this->generateTranslatableField(['ka', 'en'], rand(2, 4)),
             'description' => $this->generateTranslatableField(['ka', 'en'], rand(2, 100)),

@@ -131,42 +131,6 @@
 </main>
 <!-- Body main wrapper end -->
 
-<section class="footer__cta footer__cta-bottom-up theme-bg-1">
-    <div class="container">
-        <div class="row mb-minus-30">
-            <div class="col-md-6">
-                <div
-                    class="footer__cta-item mb-30 theme-bg-primary d-flex flex-lg-row flex-column align-items-lg-center">
-                    <div class="footer__cta-item-icon d-flex align-items-center justify-content-center">
-                        <img class="img-fluid" src="assets/imgs/footer__cta/footer__cta-item-1.png"
-                             alt="icon not found">
-                    </div>
-
-                    <div class="footer__cta-item-text">
-                        <h4 class="color-white mb-15 mb-10">Expert Eye Care</h4>
-                        <p class="color-white mb-0">Et purus duis sollicitudin dignissim habitant. Egestas nulla quis
-                            venenatis cras sed eu massa eu faucibus</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="footer__cta-item mb-30 theme-bg-glow d-flex flex-lg-row flex-column align-items-lg-center">
-                    <div class="footer__cta-item-icon d-flex align-items-center justify-content-center">
-                        <img class="img-fluid" src="assets/imgs/footer__cta/footer__cta-item-2.png"
-                             alt="icon not found">
-                    </div>
-
-                    <div class="footer__cta-item-text">
-                        <h4 class="color-white mb-15 mb-10">Eye Health Provider</h4>
-                        <p class="color-white mb-0">Et purus duis sollicitudin dignissim habitant. Egestas nulla quis
-                            venenatis cras sed eu massa eu faucibus</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Footer area start -->
 <footer>
     <section class="footer__area-common white-bg overflow-hidden" data-background="assets/imgs/footer/background.png">

@@ -1,3 +1,46 @@
 .logo img {
     max-width: 100px;
 }
+
+.lastNews {
+    &__box {
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    &__img {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+.custom-box {
+    padding: 20px 30px;
+    border-radius: 15px;
+
+    &--white {
+        background-color: #fff;
+    }
+}
+
+.team__item-media {
+    max-height: 300px;
+    padding: 20px 10px;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.blog__item-media {
+    max-height: 300px;
+    padding: 20px 10px;
+    text-align: center;
+
+    img {
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+}
