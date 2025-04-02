@@ -7,6 +7,7 @@ use App\Filament\Resources\CompanyResource\RelationManagers;
 use App\Models\Company;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -42,7 +43,27 @@ class CompanyResource extends Resource
                         TextInput::make('email')
                             ->email()
                             ->required(),
-                    ]),
+
+                    ])->visible(fn($livewire) => $livewire instanceof \App\Filament\Cms\Resources\CompanyResource\Pages\EditCompany),
+                Section::make('User Account')
+                    ->schema([
+                        TextInput::make('user_email')
+                            ->email()
+                            ->required()
+                            ->label('Email Address'),
+                        TextInput::make('user_password')
+                            ->password()
+                            ->required()
+                            ->label('Password')
+                            ->rules(['confirmed']),
+
+                        TextInput::make('user_password_confirmation')
+                            ->password()
+                            ->required()
+                            ->label('Confirm Password')
+                            ->dehydrated(false), // This field won't be saved to the database
+
+                    ])->visible(fn($livewire) => $livewire instanceof \App\Filament\Cms\Resources\CompanyResource\Pages\CreateCompany),
                 TextInput::make('title')
                     ->required()
                     ->columnSpanFull(),
@@ -96,7 +117,8 @@ class CompanyResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array
