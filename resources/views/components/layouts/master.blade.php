@@ -140,12 +140,13 @@
                     <div class="footer__widget footer__widget-item-1">
                         <div class="footer__logo mb-30 mb-xs-25">
                             <a href="index.html">
-                                <img class="img-fluid" src="assets/imgs/logo/footer-logo.svg" alt="logo not found">
+                                <img class="img-fluid" src="{{asset('assets/imgs/logo/logo.png')}}"
+                                     alt="logo not found">
                             </a>
                         </div>
 
                         <div class="footer__content">
-                            <p class="mb-0">It is a long established fact that a reader will be distracted</p>
+                            <p class="mb-0"></p>
                         </div>
 
                         <div class="footer__social mt-30 mt-xs-30">
@@ -164,59 +165,19 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-6">
-                    <div class="footer__widget footer__widget-item-2">
-                        <div class="footer__widget-title">
-                            <h4>Services</h4>
-                        </div>
-                        <div class="footer__link">
-                            <ul>
-                                <li><a href="about-us.html">Reliable Rentals</a></li>
-                                <li><a href="about-us.html">Golden Key Properties</a></li>
-                                <li><a href="about-us.html">Swift Home Sales</a></li>
-                                <li><a href="about-us.html">Elite Realty Services</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-4 col-6">
-                    <div class="footer__widget footer__widget-item-3">
-                        <div class="footer__widget-title">
-                            <h4>Our newsletter</h4>
-                        </div>
-
-                        <div class="footer__subscribe-content">
-                            <p class="mb-30 mb-xs-25">Custom Software Development Tailored Solutions for Your Business
-                                Custom </p>
-
-                            <div class="footer__subscribe d-flex mt-30 mt-xs-25">
-                                <input type="text" placeholder="Enter e-mail">
-                                <button type="submit" class="rr-btn rr-btn__theme">
-                                <span class="btn-wrap">
-                                    <span class="text-one"><i class="fa-solid fa-paper-plane"></i></span>
-
-                                    <span class="text-two"><i class="fa-solid fa-paper-plane"></i></span>
-                                </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6 ms-auto">
                     <div class="footer__widget footer__widget-item-4">
                         <div class="footer__widget-title">
-                            <h4>Our Office</h4>
+                            <h4>{{__('კონტაქტი')}}</h4>
                         </div>
 
                         <div class="footer__link footer__link-location">
                             <ul>
                                 <li><a href="mailto:debra.holt@example.com"><i class="fa-solid fa-envelope"></i>
-                                        debra.holt@example.com</a></li>
+                                        career@tsmu.edu</a></li>
                                 <li><a href="https://maps.app.goo.gl/4XYAPDmpesGnSbsC8"><i
-                                            class="fa-solid fa-location-dot"></i> 3891 Ranchview Dr. Richardson,
-                                        California 62639</a></li>
+                                            class="fa-solid fa-location-dot"></i> ვ.ფშაველას გამზირი</a></li>
                             </ul>
                         </div>
                     </div>

@@ -3,30 +3,27 @@
     <section class="banner-3 section-space overflow-hidden">
         <div class="swiper banner-3__slider mt-65 mt-xs-50">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="banner-3__item position-relative overflow-hidden">
-                        <div class="panel wow"></div>
-                        <div class="banner-3__item-media">
-                            <img class="img-fluid" src="assets/imgs/banner-3/banner-1.png" alt="icon not found">
+                @forelse ($sliders as $slide)
+                    <div class="swiper-slide">
+                        <div class="banner-3__item position-relative overflow-hidden">
+                            <div class="panel wow"></div>
+                            <div class="banner-3__item-media">
+                                <img class="banner3__img img-fluid" src="{{$slide->img}}" alt="icon not found">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="banner-3__item position-relative overflow-hidden">
-                        <div class="panel wow"></div>
-                        <div class="banner-3__item-media">
-                            <img class="img-fluid" src="assets/imgs/banner-3/banner-2.png.jpeg" alt="icon not found">
+                @empty
+                    <div class="swiper-slide">
+                        <div class="banner-3__item position-relative overflow-hidden">
+                            <div class="panel wow"></div>
+                            <div class="banner-3__item-media">
+                                <img class="img-fluid" src="assets/imgs/banner-3/banner-1.png" alt="icon not found">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="banner-3__item position-relative overflow-hidden">
-                        <div class="panel wow"></div>
-                        <div class="banner-3__item-media">
-                            <img class="img-fluid" src="assets/imgs/banner-3/banner-3.png.jpeg" alt="icon not found">
-                        </div>
-                    </div>
-                </div>
+                @endforelse
+
+
             </div>
             <div class="banner-3__pagination"></div>
         </div>
@@ -41,7 +38,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="service__item mb-30">
                             <div class="service__item-icon mb-20 mb-xs-15 text-center">
-                                <img src="{{$vacancy->company->img}}"
+                                <img class="img-fluid" src="{{$vacancy->company->img}}"
                                      alt="icon not found">
                             </div>
 
@@ -64,23 +61,17 @@
     <section class="about-us section-space overflow-hidden lastNews">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-xl-6">
+                <div class="col-xl-4">
                     <div class="section__title-wrapper about-us__content">
-
-                        <h2 class="section__title mb-30 mb-xs-20 title-animation">{{$lastNews->title}}</h2>
-
-                        <p class="mb-30 mb-xs-25">
-                            {{$lastNews->description}}
-                        </p>
-
-
+                        <h3 class="section__title mb-30 mb-xs-20 title-animation">{{$lastNews->title}}</h3>
+                        <button class="btn btn-info btn-lg">{{__('სრულად ნახვა')}}</button>
                     </div>
                 </div>
 
-                <div class="col-xl-6">
+                <div class="col-xl-8">
                     <div
                         class="about-us__media d-flex flex-column flex-sm-row align-items-sm-start align-items-center justify-content-xl-end justify-content-center lastNews__box">
-                        <img class="img-fluid lastNews__img" src="{{$lastNews->img}}"
+                        <img class="img-fluid lastNews__img " src="{{$lastNews->img}}"
                              alt="icon not found">
 
                     </div>
@@ -223,7 +214,7 @@
                             <h5 class="mb-3" id="">
                                 {{__('აღწერა')}}
                             </h5>
-                            {{$lastVacancy->description}}
+                            {!! $lastVacancy->description !!}
                         </div>
                     </div>
                 </div>

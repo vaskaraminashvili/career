@@ -10,7 +10,6 @@
     }
 
     &__img {
-        max-width: 300px;
         margin: 0 auto;
     }
 }
@@ -44,3 +43,24 @@
         object-fit: contain;
     }
 }
+
+.banner-3__item-media img {
+    max-height: 580px;
+}
+
+@media only screen and (min-width: 1440px) {
+    .service__item-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 240px;
+        height: 230px;
+    }
+    .blog__item-media {
+        img {
+            max-height: 230px;
+
+        }
+    }
+}
+
