@@ -33,6 +33,11 @@
     <!-- service area start -->
     <section class="service service__space">
         <div class="container">
+            <div class="row mb-30">
+                <div class="col-12">
+                    <h2>{{__('ბოლო ვაკანსიები')}}</h2>
+                </div>
+            </div>
             <div class="row mb-minus-30">
                 @foreach($latestVacancies as $vacancy)
                     <div class="col-xl-3 col-lg-4 col-md-6">
@@ -42,12 +47,12 @@
                                      alt="icon not found">
                             </div>
 
-                            <h4 class="mb-25 mb-xs-20"><a href="service-details.html">{{$vacancy->title}}</a></h4>
+                            <div class="title-box mb-25 mb-xs-20">
+                                <a href="service-details.html"> {{ Str::limit($vacancy->title, 45, '...') }} </a>
+                            </div>
 
-                            <p class="mb-40 mb-xs-30">{{$vacancy->company->title}}</p>
-
-                            <a class="rr-a-btn" href="service-details.html">{{__('მეტის გაგება')}}<i
-                                    class="fa-solid fa-circle-plus"></i></a>
+                            <a class="rr-a-btn" href="service-details.html">
+                                {{__('მეტის გაგება')}}<i class="fa-solid fa-circle-plus"></i></a>
                         </div>
                     </div>
                 @endforeach
@@ -255,8 +260,9 @@
 
                                         <div class="team__item-content">
                                             <div class="team__item-content-left">
-                                                <h4 class="mb-10"><a href="doctor-details.html">{{$company->title}}</a>
-                                                </h4>
+                                                <div class="title-box">
+                                                    <a href="doctor-details.html"> {{ Str::limit($company->title, 69, '...') }}</a>
+                                                </div>
                                             </div>
 
 
@@ -300,11 +306,11 @@
                                         class="fa-solid fa-calendar-days"></i>
                                     <span>{{ \Carbon\Carbon::parse($news->created_at)->diffForHumans() }}</span>
                                 </div>
-                                <h4 class="mb-15 mb-xs-10">
+                                <div class="title-box title-box__news mb-15 mb-xs-10">
                                     <a href="blog-details.html">
-                                        {{$news->title}}
+                                        {{ Str::limit($news->title, 80, '...') }}
                                     </a>
-                                </h4>
+                                </div>
 
                                 <a class="rr-a-btn" href="blog-details.html">
                                     {{__('მეტის ნახვა')}}

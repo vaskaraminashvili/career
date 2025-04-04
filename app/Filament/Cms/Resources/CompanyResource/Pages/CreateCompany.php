@@ -24,6 +24,7 @@ class CreateCompany extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+
         $user = User::create([
             'email'    => $data['user_email'],
             'password' => bcrypt($data['user_password']),

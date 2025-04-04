@@ -50,6 +50,8 @@ class CompanyResource extends Resource
                         TextInput::make('user_email')
                             ->email()
                             ->required()
+                            ->unique(table: 'users', column: 'email', ignoreRecord: true)
+                            ->rules(['email', 'max:255'])
                             ->label('Email Address'),
                         TextInput::make('user_password')
                             ->password()

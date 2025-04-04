@@ -32,7 +32,6 @@
 
 ფიდბექის მოდულიი დავტოვოთ --- es deroebit davahaide radgan ar gvvaqvs  ✅
 
-ბოლო ვაკანსია   agtseris teqsti ar givnda marto satauri da gilaki ro gadvides
 
 კომპანიის ლოგოები წავშალოთ  ✅
 
@@ -44,6 +43,8 @@
 
 
 
-ველები გვაინტერესებს სტუდენტის სარეგისტრაციო და კომპანიის სრული პორტფოლიო თუ როგორ, რომელი ველი იქნება სავალდებულო
+მთავარ გვერდზე ყველა სიახლე და ვაკანსია და რაც იქნება ყველას სათაურის სიმაღლე სტატიკური თუ არ ყოფნის 3 წერტილი
 
-Minify-gb-ebis dasapataravebeli
+ბოლო ვაკანსია   agtseris teqsti ar givnda marto satauri da gilaki ro gadvides ❌
+
+
