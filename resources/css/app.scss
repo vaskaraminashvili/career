@@ -49,6 +49,9 @@
 }
 
 @media only screen and (min-width: 1440px) {
+    .section-space__inner {
+        padding-top: 230px;
+    }
     .title-box {
         display: flex;
         align-items: center;
@@ -64,6 +67,17 @@
             a {
                 font-size: 18px;
             }
+        }
+    }
+    .image-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 230px;
+
+        img {
+            max-width: 230px;
+            max-height: 230px;
         }
     }
     .service__item-icon {

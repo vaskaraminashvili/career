@@ -95,9 +95,9 @@
             <div class="mega__menu-wrapper p-relative">
                 <div class="header__main">
                     <div class="header__logo">
-                        <a href="index.html">
+                        <a href="{{ route('home') }}">
                             <div class="logo">
-                                <img src="assets/imgs/logo/logo.png" alt="logo not found">
+                                <img src="{{asset('assets/imgs/logo/logo.png')}}" alt="logo not found">
                             </div>
                         </a>
                     </div>

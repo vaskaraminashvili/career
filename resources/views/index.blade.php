@@ -45,15 +45,17 @@
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="service__item mb-30">
                             <div class="service__item-icon mb-20 mb-xs-15 text-center">
-                                <img class="img-fluid" src="{{$vacancy->company->img}}"
-                                     alt="icon not found">
+                                <a href="{{ route('vacancies.show' , ['id' => $vacancy->id]) }}">
+                                    <img class="img-fluid" src="{{$vacancy->company->img}}"
+                                         alt="icon not found">
+                                </a>
                             </div>
 
                             <div class="title-box mb-25 mb-xs-20">
-                                <a href="service-details.html"> {{ Str::limit($vacancy->title, 45, '...') }} </a>
+                                <a href="{{ route('vacancies.show' , ['id' => $vacancy->id]) }}"> {{ Str::limit($vacancy->title, 45, '...') }} </a>
                             </div>
 
-                            <a class="rr-a-btn" href="service-details.html">
+                            <a class="rr-a-btn" href="{{ route('vacancies.show' , ['id' => $vacancy->id]) }}">
                                 {{__('მეტის გაგება')}}<i class="fa-solid fa-circle-plus"></i></a>
                         </div>
                     </div>
@@ -236,12 +238,14 @@
                     </div>
 
                     <div class="rr__faq">
-                        <button type="submit" class="rr-btn rr-btn__primary-color mt-0 w-100">
-                            <span class="btn-wrap">
-                                <span class="text-one">{{__('სრულად ნახვა')}}</span>
-                                <span class="text-two">{{__('სრულად ნახვა')}}</span>
-                            </span>
-                        </button>
+
+                        <a href="{{route('vacancies.show', ['id' => $vacancy->id])}}"
+                           class="rr-btn rr-btn__transparent">
+                                <span class="btn-wrap">
+                                    <span class="text-one">{{__('სრულად ნახვა')}}</span>
+                                    <span class="text-two">{{__('სრულად ნახვა')}}</span>
+                                </span>
+                        </a>
                     </div>
                 </div>
 
