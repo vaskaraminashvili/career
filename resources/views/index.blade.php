@@ -33,9 +33,11 @@
     <!-- service area start -->
     <section class="service service__space">
         <div class="container">
-            <div class="row mb-30">
+            <div class="row">
                 <div class="col-12">
-                    <h2>{{__('ბოლო ვაკანსიები')}}</h2>
+                    <div class="section__title-wrapper mb-60 mb-xs-40">
+                        <h2 class="section__title mb-0 title-animation">{{__('ბოლო ვაკანსიები')}}</h2>
+                    </div>
                 </div>
             </div>
             <div class="row mb-minus-30">
@@ -65,11 +67,23 @@
     <!-- about-us area start -->
     <section class="about-us section-space overflow-hidden lastNews">
         <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section__title-wrapper mb-60 mb-xs-40">
+                        <h2 class="section__title mb-0 title-animation">{{__('ბოლო სიახლე')}}</h2>
+                    </div>
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-xl-4">
                     <div class="section__title-wrapper about-us__content">
                         <h3 class="section__title mb-30 mb-xs-20 title-animation">{{$lastNews->title}}</h3>
-                        <button class="btn btn-info btn-lg">{{__('სრულად ნახვა')}}</button>
+                        <button type="submit" class="rr-btn rr-btn__primary-color mt-0 w-100">
+                            <span class="btn-wrap">
+                                <span class="text-one">{{__('სრულად ნახვა')}}</span>
+                                <span class="text-two">{{__('სრულად ნახვა')}}</span>
+                            </span>
+                        </button>
                     </div>
                 </div>
 
@@ -206,21 +220,28 @@
     <!-- testimonial area end -->
 
     <!-- ask-question area start -->
-    <section class="ask-question section-space__top mb-5">
+    <section class="ask-question section-space__bottom mb-5">
         <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section__title-wrapper mb-60 mb-xs-40">
+                        <h2 class="section__title mb-0 title-animation">{{__('ბოლოს დამატებული ვაკანსია')}}</h2>
+                    </div>
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <div class="section__title-wrapper ask-question__content mb-40 mb-xs-30">
-                        <h2 class="section__title mb-0 title-animation">{{$lastVacancy->title}}</h2>
+                    <div class="section__title-wrapper mb-40 mb-xs-30">
+                        <p class="section__title mb-0  display-4">{{$lastVacancy->title}}</p>
                     </div>
 
                     <div class="rr__faq">
-                        <div class="custom-box custom-box--white">
-                            <h5 class="mb-3" id="">
-                                {{__('აღწერა')}}
-                            </h5>
-                            {!! $lastVacancy->description !!}
-                        </div>
+                        <button type="submit" class="rr-btn rr-btn__primary-color mt-0 w-100">
+                            <span class="btn-wrap">
+                                <span class="text-one">{{__('სრულად ნახვა')}}</span>
+                                <span class="text-two">{{__('სრულად ნახვა')}}</span>
+                            </span>
+                        </button>
                     </div>
                 </div>
 
@@ -240,7 +261,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section__title-wrapper text-center mb-60 mb-xs-40">
+                    <div class="section__title-wrapper mb-60 mb-xs-40">
                         <h2 class="section__title mb-0 title-animation">{{__('კომპანიები')}}</h2>
                     </div>
                 </div>
@@ -285,7 +306,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section__title-wrapper text-center mb-60 mb-xs-40">
+                    <div class="section__title-wrapper mb-60 mb-xs-40">
                         <h2 class="section__title mb-0 title-animation">{{__('ბოლო საიხლეები')}}</h2>
                     </div>
                 </div>
