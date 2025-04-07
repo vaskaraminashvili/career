@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->json('first_name');
-            $table->json('last_name');
-            $table->string('phone');
+            $table->json('first_name')->nullable();
+            $table->json('last_name')->nullable();
+            $table->string('phone')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

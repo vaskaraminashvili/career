@@ -22,6 +22,7 @@ class Company extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'title',
         'phone',
         'address',

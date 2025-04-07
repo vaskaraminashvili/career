@@ -13,10 +13,10 @@ return new class extends Migration {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->json('title');
-            $table->string('phone');
-            $table->json('address');
-            $table->json('description');
+            $table->json('title')->nullable();
+            $table->string('phone')->nullable();
+            $table->json('address')->nullable();
+            $table->json('description')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

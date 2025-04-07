@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\User\Pages\Auth\RegisterUser;
 use App\Filament\User\Pages\EditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -28,6 +29,7 @@ class UserPanelProvider extends PanelProvider
             ->id('user')
             ->path('user')
             ->profile(EditProfile::class, false)
+            ->registration(RegisterUser::class)
             ->passwordReset()
             ->login()
             ->brandName(fn() => __('Student'))

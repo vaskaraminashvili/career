@@ -30,5 +30,10 @@ class StudentVacancy extends Pivot
     {
         return $this->belongsTo(Vacancy::class);
     }
-    
+
+    public function company()
+    {
+        return $this->vacancy->company();
+    }
+
 }

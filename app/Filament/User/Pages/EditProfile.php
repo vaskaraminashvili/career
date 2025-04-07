@@ -43,6 +43,11 @@ class EditProfile extends BaseEditProfile
                             ->translateLabel()
                             ->label('Last Name Eng')
                             ->required(),
+                        TextInput::make('phone')
+                            ->tel()
+                            ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
+                            ->translateLabel()
+                            ->label('Mobile Phone'),
                         SpatieMediaLibraryFileUpload::make('cv')
                             ->acceptedFileTypes(['application/pdf'])
                             ->collection('student_cv'),

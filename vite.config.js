@@ -4,7 +4,7 @@ import laravel, {refreshPaths} from 'laravel-vite-plugin';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js', 'vendor/andreia/filament-nord-theme/resources/css/theme.css'],
+            input: ['resources/css/app.scss', 'resources/js/app.js', 'vendor/andreia/filament-nord-theme/resources/css/theme.css'],
             refresh: [
                 ...refreshPaths,
                 'app/livewire/**',
@@ -13,4 +13,7 @@ export default defineConfig({
             ],
         }),
     ],
+    build: {
+        cssMinify: false, // This disables CSS minification
+    }
 });

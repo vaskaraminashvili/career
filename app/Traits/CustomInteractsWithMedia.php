@@ -17,8 +17,7 @@ trait CustomInteractsWithMedia
         $this->parentRegisterMediaCollections();
 
         $this
-            ->addMediaCollection($this->getMediaCollectionName())
-            ->singleFile();
+            ->addMediaCollection($this->getMediaCollectionName());
     }
 
     protected function getMediaCollectionName(): string
@@ -48,6 +47,11 @@ trait CustomInteractsWithMedia
 
     public function getImgAttribute(): string
     {
-        return $this->getFirstMediaUrl($this->getMediaCollectionName()) ?: '';
+        return $this->getFirstMediaUrl($this->getMediaCollectionName()) ?: asset('assets/imgs/logo/logo.png');
+    }
+
+    public function getImagesUrlsAttribute(): array
+    {
+        return $this->getMedia($this->getMediaCollectionName())->map->getUrl()->toArray();
     }
 }
