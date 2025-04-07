@@ -26,5 +26,8 @@ Route::controller(NewsController::class)
         Route::get('/{id}', 'show')->name('show');
     });
 
-
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Redirect to homepage after logout
+})->name('logout');
 

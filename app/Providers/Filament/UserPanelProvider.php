@@ -40,6 +40,11 @@ class UserPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make()
+                    ->label(fn() => __('საიტზე გადასვლა'))
+                    ->url(fn(): string => route('home'))
+                    ->icon('heroicon-m-home')
+                    ->sort(-1),
+                NavigationItem::make()
                     ->label(fn() => __('Profile'))
                     ->url(fn(): string => EditProfile::getUrl())
                     ->icon('heroicon-o-user-circle'),
