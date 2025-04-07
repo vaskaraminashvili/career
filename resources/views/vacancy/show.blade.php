@@ -20,18 +20,36 @@
                     </div>
                 </div>
                 <div class="col-xl-8">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="service-details__content">
 
                         <h2 class="title-animation mb-20">{{$vacancy->title}}</h2>
 
                         {!! $vacancy->description !!}
                         <div class="mt-4">
-                            <a href="appoinment.html" class="rr-btn">
-                                <span class="btn-wrap">
-                                    <span class="text-one">{{__('მიმართეთ ახლავე')}}</span>
-                                    <span class="text-two">{{__('მიმართეთ ახლავე')}}</span>
-                                </span>
-                            </a>
+                            @php
+                                $student = auth()->user()->student;
+                            @endphp
+                            @can('send-cv', $student)
+                                <a href="{{route('vacancies.apply-for-vacancy', $vacancy->id)}}" class="rr-btn">
+                                    <span class="btn-wrap">
+                                        <span class="text-one">{{__('მიმართეთ ახლავე')}}</span>
+                                        <span class="text-two">{{__('მიმართეთ ახლავე')}}</span>
+                                    </span>
+                                </a>
+                            @else
+                                <p class="text-danger">
+                                    {{__('გთხოვთ ატვიროთ CV და შეავსოთ მობილური რომ შეძლოთ კონკურსში მონაწილეობა')}}
+                                </p>
+                                <a class="text-info" href="/user/profile">
+                                    {{__('პროფილი')}}
+                                </a>
+                            @endcan
+
                         </div>
                     </div>
                 </div>

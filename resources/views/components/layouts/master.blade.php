@@ -115,7 +115,41 @@
 
                     <div class="header__right">
                         <div class="header__action d-flex align-items-center">
+                            <div class="main-menu">
+                                <ul>
+                                    @auth
 
+                                        <li class="has-dropdown">
+                                            <a href="#">
+                                                <i class="fa-solid fa-user me-2"></i>
+                                                {{auth()->user()->email}}</a>
+                                            <ul class="submenu">
+                                                <li><a href="/user/">{{__('პროფილი')}}</a></li>
+                                                <li>
+                                                    <form method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="ms-5">
+                                                            {{__('გასვლა')}}
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    @endauth
+
+                                    @guest
+                                        <li class="has-dropdown">
+                                            <a href="#">{{__('სისტემაში შესვლა')}}</a>
+                                            <ul class="submenu">
+                                                <li><a href="/user/login">{{__('მომხმარებელი')}}</a></li>
+                                                <li><a href="/company/login">{{__('კომპანია')}}</a></li>
+                                            </ul>
+                                        </li>
+                                    @endguest
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -128,9 +128,9 @@ class Applicants extends Page implements HasTable, HasActions
 
                                 TextInput::make('cv_link')
                                     ->label('CV Link')
-                                    ->formatStateUsing(function ($state, $get) {
+                                    ->formatStateUsing(function ($state, Student $record) {
                                         $media = Media::where('collection_name', 'student_cv')
-                                            ->where('model_id', $get('user_id'))
+                                            ->where('model_id', $record->id)
                                             ->first();
                                         return $media ? $media->getUrl() : 'No CV uploaded';
                                     })

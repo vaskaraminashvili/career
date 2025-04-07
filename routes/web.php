@@ -15,6 +15,7 @@ Route::controller(VacancyController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}/apply', 'applyForVacancy')->name('apply-for-vacancy');
         Route::get('/company/{company_id}', 'companyVacancies')->name('companyVacancies');
     });
 
@@ -26,5 +27,8 @@ Route::controller(NewsController::class)
         Route::get('/{id}', 'show')->name('show');
     });
 
-
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Redirect to homepage after logout
+})->name('logout');
 

@@ -50,6 +50,11 @@ trait CustomInteractsWithMedia
         return $this->getFirstMediaUrl($this->getMediaCollectionName()) ?: asset('assets/imgs/logo/logo.png');
     }
 
+    public function getStudentCvAttribute(): string
+    {
+        return $this->getFirstMediaUrl('student_cv') ?: '';
+    }
+
     public function getImagesUrlsAttribute(): array
     {
         return $this->getMedia($this->getMediaCollectionName())->map->getUrl()->toArray();
