@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/vendor/spacing.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/plugins/odometer-theme-default.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    @stack('styles')
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -235,6 +236,8 @@
 <script src="{{asset('assets/js/plugins/smoothscroll.js')}}"></script>
 <script src="{{asset('assets/js/vendor/ajax-form.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
+@stack('scripts')
+
 </body>
 
 </html>

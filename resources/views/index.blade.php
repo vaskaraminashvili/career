@@ -320,7 +320,7 @@
                 @foreach($latestNews as $news)
                     <div class="col-xl-4 col-md-6">
                         <div class="blog__item mb-30">
-                            <a href="blog-details.html"
+                            <a href="{{route('news.show', ['id' => $news->id])}}"
                                class="blog__item-media d-block position-relative overflow-hidden">
                                 <div class="panel wow"></div>
                                 <img class="img-fluid" src="{{$news->img}}" alt="image not found">
@@ -332,12 +332,12 @@
                                     <span>{{ \Carbon\Carbon::parse($news->created_at)->diffForHumans() }}</span>
                                 </div>
                                 <div class="title-box title-box__news mb-15 mb-xs-10">
-                                    <a href="blog-details.html">
+                                    <a href="{{route('news.show', ['id' => $news->id])}}">
                                         {{ Str::limit($news->title, 80, '...') }}
                                     </a>
                                 </div>
 
-                                <a class="rr-a-btn" href="blog-details.html">
+                                <a class="rr-a-btn" href="{{route('news.show', ['id' => $news->id])}}">
                                     {{__('მეტის ნახვა')}}
                                     <i class="fa-solid fa-circle-plus"></i>
                                 </a>
