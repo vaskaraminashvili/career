@@ -20,6 +20,11 @@
                     </div>
                 </div>
                 <div class="col-xl-8">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="service-details__content">
 
                         <h2 class="title-animation mb-20">{{$vacancy->title}}</h2>
@@ -30,7 +35,7 @@
                                 $student = auth()->user()->student;
                             @endphp
                             @can('send-cv', $student)
-                                <a href="appoinment.html" class="rr-btn">
+                                <a href="{{route('vacancies.apply-for-vacancy', $vacancy->id)}}" class="rr-btn">
                                     <span class="btn-wrap">
                                         <span class="text-one">{{__('მიმართეთ ახლავე')}}</span>
                                         <span class="text-two">{{__('მიმართეთ ახლავე')}}</span>
@@ -44,6 +49,7 @@
                                     {{__('პროფილი')}}
                                 </a>
                             @endcan
+
                         </div>
                     </div>
                 </div>
