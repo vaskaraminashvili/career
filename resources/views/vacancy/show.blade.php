@@ -26,12 +26,24 @@
 
                         {!! $vacancy->description !!}
                         <div class="mt-4">
-                            <a href="appoinment.html" class="rr-btn">
-                                <span class="btn-wrap">
-                                    <span class="text-one">{{__('მიმართეთ ახლავე')}}</span>
-                                    <span class="text-two">{{__('მიმართეთ ახლავე')}}</span>
-                                </span>
-                            </a>
+                            @php
+                                $student = auth()->user()->student;
+                            @endphp
+                            @can('send-cv', $student)
+                                <a href="appoinment.html" class="rr-btn">
+                                    <span class="btn-wrap">
+                                        <span class="text-one">{{__('მიმართეთ ახლავე')}}</span>
+                                        <span class="text-two">{{__('მიმართეთ ახლავე')}}</span>
+                                    </span>
+                                </a>
+                            @else
+                                <p class="text-danger">
+                                    {{__('გთხოვთ ატვიროთ CV და შეავსოთ მობილური რომ შეძლოთ კონკურსში მონაწილეობა')}}
+                                </p>
+                                <a class="text-info" href="/user/profile">
+                                    {{__('პროფილი')}}
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>

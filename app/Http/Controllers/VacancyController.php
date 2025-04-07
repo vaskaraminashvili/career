@@ -24,6 +24,7 @@ class VacancyController extends Controller
             ->where('id', $id)
             ->with(['company'])
             ->firstOrFail();
+//      
         return view('vacancy.show', compact('vacancy'));
     }
 
