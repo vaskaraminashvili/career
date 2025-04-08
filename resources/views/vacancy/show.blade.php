@@ -31,24 +31,32 @@
 
                         {!! $vacancy->description !!}
                         <div class="mt-4">
-                            @php
-                                $student = auth()->user()->student;
-                            @endphp
-                            @can('send-cv', $student)
-                                <a href="{{route('vacancies.apply-for-vacancy', $vacancy->id)}}" class="rr-btn">
+                            @auth
+                                @php
+                                    $student = auth()->user()->student;
+                                @endphp
+                                @can('send-cv', $student)
+                                    <a href="{{route('vacancies.apply-for-vacancy', $vacancy->id)}}" class="rr-btn">
                                     <span class="btn-wrap">
                                         <span class="text-one">{{__('მიმართეთ ახლავე')}}</span>
                                         <span class="text-two">{{__('მიმართეთ ახლავე')}}</span>
                                     </span>
-                                </a>
-                            @else
+                                    </a>
+                                @else
+                                    <p class="text-danger">
+                                        {{__('გთხოვთ ატვიროთ CV და შეავსოთ მობილური რომ შეძლოთ კონკურსში მონაწილეობა')}}
+                                    </p>
+                                    <a class="text-info" href="/user/profile">
+                                        {{__('პროფილი')}}
+                                    </a>
+                                @endcan
+                            @endauth
+                            @guest
                                 <p class="text-danger">
-                                    {{__('გთხოვთ ატვიროთ CV და შეავსოთ მობილური რომ შეძლოთ კონკურსში მონაწილეობა')}}
+                                    {{__('გთხოვთ გაიაროთ ავტორიზაცია და ატვიროთ CV და შეავსოთ მობილური რომ შეძლოთ კონკურსში მონაწილეობა')}}
                                 </p>
-                                <a class="text-info" href="/user/profile">
-                                    {{__('პროფილი')}}
-                                </a>
-                            @endcan
+                            @endguest
+
 
                         </div>
                     </div>

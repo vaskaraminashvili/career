@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VacancyController;
@@ -26,6 +27,14 @@ Route::controller(NewsController::class)
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
     });
+
+Route::controller(CompanyController::class)
+    ->prefix('companies')
+    ->name('companies.')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
 
 Route::post('/logout', function () {
     Auth::logout();

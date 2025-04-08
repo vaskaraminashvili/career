@@ -15,8 +15,7 @@ class VacancyController extends Controller
             ->where('status', 1)
             ->with(['company'])
             ->orderBy('id', 'desc')
-            ->limit(9)
-            ->get();
+            ->paginate(9);
         return view('vacancy.index', compact('vacancies'));
     }
 
@@ -39,7 +38,7 @@ class VacancyController extends Controller
                 $query->where('id', $company_id);
             })
             ->with(['company'])
-            ->get();
+            ->paginate(6);
         return view('vacancy.index', compact('vacancies'));
     }
 

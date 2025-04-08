@@ -1,12 +1,13 @@
 <x-layouts.master>
     <!-- services 4 start -->
-    <section class="service-4 section-space  section-space__inner">
+    <section
+        class="service-4 section-space  section-space__inner {{Route::is('vacancies.companyVacancies') ? 'bg-white' : ''}}">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section__title-wrapper mb-60 mb-xs-40">
                         <h2 class="section__title mb-0 title-animation">
-                            @if(Route::is('vacancies.companyVacancies'))
+                            @if($vacancies->count() != 0 && Route::is('vacancies.companyVacancies'))
                                 {{$vacancies[0]->company->title}}
                             @endif
                             {{__('ვაკანსიები')}}
@@ -15,7 +16,7 @@
                 </div>
             </div>
             <div class="row mb-minus-30">
-                @foreach($vacancies as $vacancy)
+                @forelse($vacancies as $vacancy)
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="service-4__item mb-30">
                             <div class="mb-40 mb-xs-20 image-box">
@@ -35,7 +36,18 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-xl-12">
+                        <p class="display-1">
+                            {{__('ვაკანსიები ვერ მოიძებნა')}}
+                        </p>
+                    </div>
+                @endforelse
+            </div>
+            <div class="row mt-3">
+                <div class="col-xl-12">
+                    {{ $vacancies->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </section>

@@ -279,14 +279,19 @@
                                 <div class="swiper-slide">
                                     <div class="team__item">
                                         <div class="team__item-media">
-                                            <img class="img-fluid" src="{{$company->img}}"
-                                                 alt="image not found">
+                                            <a href="{{route('vacancies.companyVacancies', ['company_id' => $company->id])}}">
+                                                <img class="img-fluid" src="{{$company->img}}"
+                                                     alt="image not found">
+
+                                            </a>
                                         </div>
 
                                         <div class="team__item-content">
                                             <div class="team__item-content-left">
                                                 <div class="title-box">
-                                                    <a href="doctor-details.html"> {{ Str::limit($company->title, 69, '...') }}</a>
+                                                    <a href="{{route('vacancies.companyVacancies', ['company_id' => $company->id])}}">
+                                                        {{ Str::limit($company->title, 69, '...') }}
+                                                    </a>
                                                 </div>
                                             </div>
 

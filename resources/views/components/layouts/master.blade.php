@@ -92,6 +92,11 @@
 <!-- Header area start -->
 <header>
     <div id="header-sticky" class="header__area header-1">
+        <div class="demo_mode d-flex justify-content-center bg-danger mb-2">
+            <div class="py-3">
+                <p class="mb-0 text-white">{{__('საიტი მუშაობს სატესტო რეჟიმში')}}</p>
+            </div>
+        </div>
         <div class="container">
             <div class="mega__menu-wrapper p-relative">
                 <div class="header__main">
@@ -107,7 +112,21 @@
                         <div class="main-menu">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li><a href="contact.html">contact</a></li>
+                                    <li>
+                                        <a href="{{ route('vacancies.index') }}">
+                                            {{__('ვაკანსიები')}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('news.index') }}">
+                                            {{__('სიახლეები')}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('companies.index') }}">
+                                            {{__('კომპანიები')}}
+                                        </a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
