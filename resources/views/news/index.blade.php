@@ -44,6 +44,11 @@
                     </div>
                 @endforeach
             </div>
+            <div class="row mt-3">
+                <div class="col-xl-12">
+                    {{ $news->links('pagination::bootstrap-5') }}
+                </div>
+            </div>
         </div>
     </section>
     <!-- blog area end -->
