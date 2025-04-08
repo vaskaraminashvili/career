@@ -116,9 +116,9 @@
 
                     <div class="treatment-process__media mb-30">
                         <img class="img-fluid" data-parallax='{"scale": 1.2, "smoothness": 15}'
-                             src="assets/imgs/treatment-process/treatment-process.jpg" alt="image not found">
+                             src="{{asset('assets/imgs/youtube_thumb.jpg')}}" alt="image not found">
 
-                        <a href="https://www.youtube.com/watch?v=dyNpojnbNT4" class="popup-video zooming"
+                        <a href="https://www.youtube.com/watch?v=OM164NnZnn0" class="popup-video zooming"
                            data-effect="mfp-move-from-top vertical-middle">
                             <i class="fa-thin fa-play"></i>
                         </a>
