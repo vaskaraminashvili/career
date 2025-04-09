@@ -21,4 +21,11 @@ class CreateVacancy extends CreateRecord
             CreateAction::make(),
         ];
     }
+
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['company_id'] = auth()->user()->company->id;
+        return $data;
+    }
 }
