@@ -143,7 +143,7 @@
                                                 <i class="fa-solid fa-user me-2"></i>
                                                 {{auth()->user()->email}}</a>
                                             <ul class="submenu">
-                                                @if (auth()->user()->type == 'company')
+                                                @if (auth()->user()->type->value == 'company')
                                                     <li><a href="/company/">{{__('პროფილი')}}</a></li>
                                                 @else
                                                     <li><a href="/user/">{{__('პროფილი')}}</a></li>
