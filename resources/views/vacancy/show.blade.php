@@ -7,7 +7,7 @@
 
                         <div class="sidebar__widget-contact__service text-center">
                             <h4 class="mb-25 title-animation text-capitalize">{{$vacancy->company->title}}</h4>
-                            <img class="mb-25" src="{{$vacancy->company->img}}" alt="">
+                            <img class="img-fluid mb-25" src="{{$vacancy->company->img}}" alt="">
 
                             <a href="{{route('vacancies.companyVacancies', ['company_id' => $vacancy->company->id])}}"
                                class="rr-btn rr-btn__transparent">

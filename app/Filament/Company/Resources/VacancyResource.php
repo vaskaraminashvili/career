@@ -14,6 +14,7 @@ use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class VacancyResource extends Resource
 {
@@ -51,6 +52,9 @@ class VacancyResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn(Builder $query) => $query->whereHas('company', function ($query) {
+                $query->where('id', auth()->user()->company->id);
+            }))
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->words(5)
