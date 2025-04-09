@@ -143,7 +143,12 @@
                                                 <i class="fa-solid fa-user me-2"></i>
                                                 {{auth()->user()->email}}</a>
                                             <ul class="submenu">
-                                                <li><a href="/user/">{{__('პროფილი')}}</a></li>
+                                                @if (auth()->user()->type == 'company')
+                                                    <li><a href="/company/">{{__('პროფილი')}}</a></li>
+                                                @else
+                                                    <li><a href="/user/">{{__('პროფილი')}}</a></li>
+
+                                                @endif
                                                 <li>
                                                     <form method="POST" action="{{ route('logout') }}">
                                                         @csrf
