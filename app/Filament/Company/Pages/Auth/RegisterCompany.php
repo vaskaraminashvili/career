@@ -23,11 +23,17 @@ class RegisterCompany extends BaseRegister
     {
         $user = parent::handleRegistration($data);
 
+        $empty = [];
+        $empty['ka'] = '';
+        $empty['en'] = '';
         $company = \App\Models\Company::create([
-            'user_id' => $user['id'],
-            'status'  => 1,
+            'user_id'     => $user['id'],
+            'title'       => $empty,
+            'address'     => $empty,
+            'description' => $empty,
+            'status'      => 1,
         ]);
-        
+
         return $user;
     }
 }

@@ -22,10 +22,14 @@ class RegisterUser extends BaseRegister
     protected function handleRegistration(array $data): \Illuminate\Database\Eloquent\Model
     {
         $user = parent::handleRegistration($data);
-
+        $empty = [];
+        $empty['ka'] = '';
+        $empty['en'] = '';
         $student = \App\Models\Student::create([
-            'user_id' => $user['id'],
-            'status'  => 1
+            'user_id'    => $user['id'],
+            'first_name' => $empty,
+            'last_name'  => $empty,
+            'status'     => 1
         ]);
 
 
